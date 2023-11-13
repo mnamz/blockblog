@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -33,6 +35,13 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
-
-    Route::resource('posts',PostController::class);
+    
+    Route::resource('projects', ProjectController::class);
+    Route::resource('posts', PostController::class);
+    
+    Route::get('/site/settings', function(){
+        return Inertia::render('Site/Show');
+    })->name('site.settings');
+    Route::get('/site/settings', [ProfileController::class, 'index'])->name('site.settings');
+    Route::put('/site/settings/update', [ProfileController::class, 'update'])->name('site.settings.update');
 });
