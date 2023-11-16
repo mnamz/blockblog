@@ -18,5 +18,4 @@ export default defineConfig({
             },
         }),
     ],
-    envDir: 'src',
 });
