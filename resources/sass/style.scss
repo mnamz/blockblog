@@ -1,0 +1,15 @@
+// Custom css
+
+// Logo
+.az-logo {
+    color: $primary;
+}
+
+// header img
+.header-img {
+    img {
+        @media screen and (max-width:640px) {
+            height: 200px;
+        }
+    }
+}
