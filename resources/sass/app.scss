@@ -9,6 +9,37 @@
     backdrop-filter: blur(3px);
     border-radius: 10px;
     padding: 10px;
+    overflow: hidden;
+    position: relative;
+
+    --left: 0px;
+    --top: 0px;
+
+    &:before {
+        content: '';
+        background-color: $secondary;
+        border-radius: 50%;
+        height: 0rem;
+        width: 0rem;
+        transition: opacity 250ms ease-in-out;
+
+        position: absolute;
+        left: var(--left);
+        top: var(--top);
+        transform: translate(-50%, -50%) scale(1.5);
+        z-index: -10;
+
+        filter: blur(70px);
+        backdrop-filter: blur(3px);
+
+        opacity: 0;
+    }
+
+    &:hover::before {
+        opacity: 1;
+        height: 10rem;
+        width: 10rem;
+    }
 }
 
 // Button

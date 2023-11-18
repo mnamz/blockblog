@@ -32,7 +32,7 @@ defineProps({
                     <div class="header-img sm:w-1/4">
                         <img class="rounded-lg h-full w-full object-cover" src="../../../storage/images/Portrait tinted.png" alt="A picture of me">
                     </div>
-                    <div class="hero-content sm:w-3/4 flex h-full flex-col justify-between gap-3 sm:gap-0">
+                    <div class="hero-content sm:w-3/4 flex h-full flex-col justify-between gap-3 sm:gap-16">
                         <div>
                             <p class="panel-label text-label">01 welcome</p>
                             <p class="text-2xl text-white">Hi! I'm Aliif Zin, a software developer based in Selangor, Malaysia.

@@ -21,3 +21,17 @@ createInertiaApp({
         color: '#4B5563',
     },
 });
+
+const panels = document.querySelectorAll('.panel');
+
+panels.forEach(panel => {
+    panel.addEventListener('mousemove', (e) => {
+        const rect = panel.getBoundingClientRect();
+
+        const left = e.pageX - rect.left;
+        const top = e.pageY - rect.top;
+
+        panel.style.setProperty("--left", `${left}px`);
+        panel.style.setProperty("--top", `${top}px`);
+    });
+});
