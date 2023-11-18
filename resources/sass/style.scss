@@ -3,6 +3,10 @@
 // Logo
 .az-logo {
     color: $primary;
+
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 // header img

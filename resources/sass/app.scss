@@ -35,6 +35,10 @@
         opacity: 0;
     }
 
+    &:hover {
+        border-color: rgba(255, 255, 255, 0.4);
+    }
+
     &:hover::before {
         opacity: 1;
         height: 10rem;
