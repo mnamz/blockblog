@@ -28,6 +28,16 @@ defineProps({
                 <a href="" class="az-logo text-2xl font-bold">Az.</a>
             </div>
 
+            <div class="carousel">
+                <div><img src="https://picsum.photos/300/200?random=1"></div>
+                <div><img src="https://picsum.photos/300/200?random=2"></div>
+                <div><img src="https://picsum.photos/300/200?random=3"></div>
+                <div><img src="https://picsum.photos/300/200?random=4"></div>
+                <div><img src="https://picsum.photos/300/200?random=5"></div>
+                <div><img src="https://picsum.photos/300/200?random=6"></div>
+            </div>
+
+
             <!-- Main content -->
             <div class="grid grid-cols-2 sm:grid-cols-4 sm:grid-rows-6 gap-5">
 
