@@ -1,8 +1,10 @@
 <script setup>
-import { Head, Link } from "@inertiajs/vue3";
+import { Head, Link } from "@inertiajs/vue3"
 import buttonPrimary from "../Components/Portfolio/textButton.vue"
 import githubIcon from "../Components/Portfolio/svg/github.vue"
 import linkedinIcon from "../Components/Portfolio/svg/linkedin.vue"
+import mailIcon from "../Components/Portfolio/svg/mail.vue"
+import phoneIcon from "../Components/Portfolio/svg/phone.vue"
 
 defineProps({
     canLogin: Boolean,
@@ -58,8 +60,30 @@ defineProps({
                 </div>
 
                 <!-- Contact Section -->
-                <div class="panel sm:col-span-1 sm:row-span-3">
-                    <p class="panel-label text-label">03 contacts</p>
+                <div class="panel sm:col-span-1 sm:row-span-3 flex flex-col gap-5">
+                    <div class="flex flex-col">
+                        <p class="panel-label text-label">03 contacts</p>
+                        <p class="text-base text-white font-bold">Got something to say or enquiries?</p>
+                    </div>
+                    <div class="flex flex-col gap-3.5">
+                        <p class="text-xs italic text-grey">Contact details</p>
+                        <div class="flex flex-row gap-2 items-center">
+                            <mailIcon/>
+                            <a class="normal-link text-white" href="mailto:">mnamz101@gmail.com</a>
+                        </div>
+                        <div class="flex flex-row gap-2 items-center">
+                            <phoneIcon/>
+                            <a class="normal-link text-white" href="mailto:">0123456789</a>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-.5">
+                        <p class="text-xs italic text-grey">Socials</p>
+                        <p><a class="arrow-link text-white" href="#">Linkedin</a></p>
+                        <p><a class="arrow-link text-white" href="#">Instagram</a></p>
+                        <p><a class="arrow-link text-white" href="#">Twitter</a></p>
+                        <p><a class="arrow-link text-white" href="#">Discord</a></p>
+                        <p><a class="arrow-link text-white" href="#">Jobstreet</a></p>
+                    </div>
                 </div>
 
                 <!-- Projects -->
@@ -79,12 +103,17 @@ defineProps({
 
                 <!-- Status Section -->
                 <div class="panel col-span-2 sm:col-span-1">
-                    <p class="panel-label text-label">07 status</p>
+                    <div class="flex flex-row justify-between items-center">
+                        <p class="panel-label text-label">05 status</p>
+                        <div class="blob"></div>
+                    </div>
+                    <p class="text-white text-sm font-light">Software developer at Osky</p>
                 </div>
-
+                
                 <!-- Footer Section -->
                 <div class="panel col-span-2 sm:col-span-1 sm:row-span-1">
                     <p class="panel-label text-label">06 footer</p>
+                    <p class="text-white text-sm font-light">© 2023 · Assembled carefully using Tailwind by Aliif Zin.</p>
                 </div>
             </div>
         </div>

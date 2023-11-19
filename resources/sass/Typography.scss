@@ -12,3 +12,49 @@ body {
     margin-bottom: 5px;
     color: $gray;
 }
+
+.text-grey {
+    color: $gray;
+}
+
+.text-red {
+    color: $primary;
+}
+
+a.normal-link {
+    font-size: 14px;
+    font-weight: 300;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+a.arrow-link {
+    font-size: 14px;
+    display: inline-block;
+    font-weight: 300;
+    text-decoration: none;
+
+    transition: color 0.3s ease;
+    position: relative;
+
+    &::after {
+        content: url('../../storage/images/longArrowActive.svg');
+        position: absolute;
+        opacity: 0;
+        transform: translateX(-20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    &:hover {
+        color: $primary;
+        text-decoration: underline;
+    }
+
+    &:hover::after {
+        opacity: 1;
+        transform: translateX(2px);
+    }
+}
