@@ -5,6 +5,8 @@ import githubIcon from "../Components/Portfolio/svg/github.vue"
 import linkedinIcon from "../Components/Portfolio/svg/linkedin.vue"
 import mailIcon from "../Components/Portfolio/svg/mail.vue"
 import phoneIcon from "../Components/Portfolio/svg/phone.vue"
+import newtabSmIcon from "../Components/Portfolio/svg/newtab-sm.vue"
+import blogarrowIcon from "../Components/Portfolio/svg/blogArrow.vue"
 
 defineProps({
     canLogin: Boolean,
@@ -31,10 +33,10 @@ defineProps({
 
                 <!-- Hero Section -->
                 <div class="panel col-span-2 sm:col-span-3 sm:row-span-3 flex flex-col sm:flex-row-reverse justify-between gap-5">
-                    <div class="header-img sm:w-1/4">
-                        <img class="rounded-lg h-full w-full object-cover" src="../../../storage/images/Portrait tinted.png" alt="A picture of me">
+                    <div class="header-img sm:w-2/6">
+                        <img class="rounded-lg h-full w-full object-cover overflow-visible" src="../../../storage/images/memojiAlep.png" alt="A picture of me">
                     </div>
-                    <div class="hero-content sm:w-3/4 flex h-full flex-col justify-between gap-3 sm:gap-16">
+                    <div class="hero-content sm:w-4/6 flex h-full flex-col justify-between gap-3 sm:gap-16">
                         <div>
                             <p class="panel-label text-label">01 welcome</p>
                             <p class="text-2xl text-white">Hi! I'm Aliif Zin, a software developer based in Selangor, Malaysia.
@@ -57,6 +59,7 @@ defineProps({
                 <!-- About Section -->
                 <div class="panel sm:col-span-1 sm:row-span-3">
                     <p class="panel-label text-label">02 about</p>
+                    <p class="text-white text-sm font-light">Text here</p>
                 </div>
 
                 <!-- Contact Section -->
@@ -98,7 +101,40 @@ defineProps({
 
                 <!-- Blog Section -->
                 <div class="panel sm:col-span-1 sm:row-span-2">
-                    <p class="panel-label text-label">08 blog</p>
+                    <div class="flex flex-row justify-between items-center mb-1">
+                        <p class="panel-label text-label mb-0">08 blog</p>
+                        <a href=""><newtabSmIcon/></a>
+                    </div>
+                    <div class="blog-listing overflow-y-scroll blog-overflow pr-2">
+                        <div class="blog-item flex flex-col gap-1 pt-2">
+                            <p class="text-sm text-white">Contoh-contoh Rizz 13 May digunakan dalam masyar...</p>
+                            <div class="flex flex-row justify-between items-center">
+                                <p class="text-xs text-grey">13 May 2020</p>
+                                <blogarrowIcon/>
+                            </div>
+                        </div>
+                        <div class="blog-item flex flex-col gap-1 pt-2">
+                            <p class="text-sm text-white">Contoh-contoh Rizz 13 May digunakan dalam masyar...</p>
+                            <div class="flex flex-row justify-between items-center">
+                                <p class="text-xs text-grey">13 May 2020</p>
+                                <blogarrowIcon/>
+                            </div>
+                        </div>
+                        <div class="blog-item flex flex-col gap-1 pt-2">
+                            <p class="text-sm text-white">Contoh-contoh Rizz 13 May digunakan dalam masyar...</p>
+                            <div class="flex flex-row justify-between items-center">
+                                <p class="text-xs text-grey">13 May 2020</p>
+                                <blogarrowIcon/>
+                            </div>
+                        </div>
+                        <div class="blog-item flex flex-col gap-1 pt-2">
+                            <p class="text-sm text-white">Contoh-contoh Rizz 13 May digunakan dalam masyar...</p>
+                            <div class="flex flex-row justify-between items-center">
+                                <p class="text-xs text-grey">13 May 2020</p>
+                                <blogarrowIcon/>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Status Section -->
