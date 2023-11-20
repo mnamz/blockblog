@@ -21,7 +21,7 @@ defineProps({
         <div class="custom-container px-3 lg:px-0">
             <!-- Main content -->
             <div class="grid grid-cols-2 sm:grid-cols-4 sm:grid-rows-6 gap-5">
-                <Landing :canLogin="canLogin" :canRegister="canRegister" :laravelVersion="laravelVersion" :phpVersion="phpVersion" />
+                <!-- <Landing :canLogin="canLogin" :canRegister="canRegister" :laravelVersion="laravelVersion" :phpVersion="phpVersion" /> -->
             </div>
         </div>
     </div>
