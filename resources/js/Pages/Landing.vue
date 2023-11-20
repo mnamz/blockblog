@@ -71,14 +71,14 @@ defineProps({
                 </div>
 
                 <!-- About Section -->
-                <div class="panel sm:col-span-1 sm:row-span-3">
+                <div class="panel col-span-2 sm:col-span-1 sm:row-span-3">
                     <p class="panel-label text-label">02 about</p>
                     <p class="text-white text-sm font-light">Text here</p>
                 </div>
 
                 <!-- Contact Section -->
                 <div
-                    class="panel sm:col-span-1 sm:row-span-3 flex flex-col gap-5"
+                    class="panel col-span-2 sm:col-span-1 sm:row-span-3 flex flex-col gap-5"
                 >
                     <div class="flex flex-col">
                         <p class="panel-label text-label">03 contacts</p>
@@ -184,9 +184,9 @@ defineProps({
                 </div>
 
                 <!-- Tech Stack Section -->
-                <div class="panel p-0 sm:col-span-1">
+                <div class="panel p-0 col-span-2 sm:col-span-1">
                     <p class="panel-label text-label p-2.5">07 tech stack</p>
-                    <div class="techStack-carousel py-3">
+                    <div class="techStack-carousel pb-2.5 sm:py-3">
                         <div class="px-2">
                             <img
                                 src="../../../storage/images/Cloud.png"
@@ -221,7 +221,7 @@ defineProps({
                 </div>
 
                 <!-- Blog Section -->
-                <div class="panel sm:col-span-1 sm:row-span-2">
+                <div class="panel col-span-2 sm:col-span-1 sm:row-span-2">
                     <div
                         class="flex flex-row justify-between items-center mb-1"
                     >
