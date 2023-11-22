@@ -41,11 +41,9 @@
         padding-bottom: 10px;
 
         background: rgb(0, 17, 32);
-        background: linear-gradient(
-            0deg,
-            rgba(0, 17, 32, 1) 0%,
-            rgba(0, 17, 32, 0) 100%
-        );
+        background: linear-gradient(0deg,
+                rgba(0, 17, 32, 1) 0%,
+                rgba(0, 17, 32, 0) 100%);
 
         @media screen and (max-width: 640px) {
             bottom: -1rem;
@@ -66,4 +64,14 @@
 
 .blog-overflow {
     max-height: 200px;
+}
+
+// Blog listing
+
+.add-info {
+    background: linear-gradient(to right, #001120ba, transparent), url('../../storage/images/Laravel\ icon.png');
+    background-size: 200px;
+    background-position-x: 120%;
+    background-repeat: no-repeat;
+    border: solid 1px $gray;
 }
