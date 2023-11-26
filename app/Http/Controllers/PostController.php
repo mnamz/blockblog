@@ -26,6 +26,18 @@ class PostController extends Controller
         );
     }
 
+    public function listing()
+    {
+        $posts = Post::all();
+
+        return Inertia::render(
+            'Blog',
+            [
+                'posts' => $posts
+            ]
+        );
+    }
+
     /**
      * Show the form for creating a new resource.
      */

@@ -1,4 +1,5 @@
 <script setup>
+import { Link } from "@inertiajs/vue3";
 import buttonPrimary from "../Portfolio/textButton.vue";
 import githubIcon from "../Portfolio/svg/github.vue";
 import linkedinIcon from "../Portfolio/svg/linkedin.vue";
@@ -169,9 +170,9 @@ import JqueryIcon from 'images/Jquery.png'
         <div class="panel col-span-2 sm:col-span-1 sm:row-span-2">
             <div class="flex flex-row justify-between items-center mb-1">
                 <p class="panel-label text-label mb-0">08 blog</p>
-                <a href="" class="newtabIcon">
+                <Link :href="route('blog')" class="newtabIcon">
                     <newtabSmIcon />
-                </a>
+                </Link>
             </div>
             <div class="blog-listing overflow-y-scroll blog-overflow pr-2">
                 <div class="blog-item flex flex-col gap-1 pt-2">

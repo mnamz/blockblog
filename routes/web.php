@@ -25,7 +25,7 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('landing');
 
 Route::get('/blog', function () {
     return Inertia::render('Blog', [
@@ -34,7 +34,18 @@ Route::get('/blog', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('blog');
+
+// Route::get('/blog', [PostController::class, 'listing'])->name('blog');
+// Route::get('/blog/1', [PostController::class, 'show'])->name('blog.show');
+Route::get('/blog-single', function () {
+    return Inertia::render('Blog', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+})->name('blog.single');
 
 Route::middleware([
     'auth:sanctum',
