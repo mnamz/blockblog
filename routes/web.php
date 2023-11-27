@@ -19,7 +19,7 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Landing', [
+    return Inertia::render('Portfolio', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
@@ -39,7 +39,7 @@ Route::get('/blog', function () {
 // Route::get('/blog', [PostController::class, 'listing'])->name('blog');
 // Route::get('/blog/1', [PostController::class, 'show'])->name('blog.show');
 Route::get('/blog-single', function () {
-    return Inertia::render('Blog', [
+    return Inertia::render('Blog/Single', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,

@@ -16,8 +16,6 @@ import BlogList from "@/Components/Portfolio/Blog-list.vue";
             </div>
             <!-- Main content -->
             <BlogList />
-            <!-- <Landing :canLogin="canLogin" :canRegister="canRegister" :laravelVersion="laravelVersion"
-                    :phpVersion="phpVersion" /> -->
         </div>
     </div>
 </template>
