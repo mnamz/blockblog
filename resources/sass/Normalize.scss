@@ -113,6 +113,17 @@ body {
     }
 }
 
+.arrowIcon {
+    fill: $gray;
+
+    &:hover {
+        path {
+            fill: $white;
+            fill-opacity: 1;
+        }
+    }
+}
+
 //--- Social panel ---//
 .panel-icon {
     path {

@@ -27,9 +27,8 @@ defineProps({
                 >
             </div>
             <!-- Main content -->
-            <!-- <Landing :canLogin="canLogin" :canRegister="canRegister" :laravelVersion="laravelVersion"
-                    :phpVersion="phpVersion" /> -->
-            <SingleBlog />
+            <Landing :canLogin="canLogin" :canRegister="canRegister" :laravelVersion="laravelVersion"
+                    :phpVersion="phpVersion" />
         </div>
     </div>
 </template>
