@@ -21,6 +21,7 @@
         "vue": "^3.2.31"
     },
     "dependencies": {
-        "@tinymce/tinymce-vue": "^5.1.1"
+        "@tinymce/tinymce-vue": "^5.1.1",
+        "vue3-carousel": "^0.3.1"
     }
 }
