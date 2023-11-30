@@ -1,5 +1,6 @@
 <script setup>
 import { Link } from "@inertiajs/vue3";
+import { ref, watchEffect, onMounted } from 'vue';
 import buttonPrimary from "../Portfolio/textButton.vue";
 import githubIcon from "../Portfolio/svg/github.vue";
 import linkedinIcon from "../Portfolio/svg/linkedin.vue";
@@ -19,6 +20,51 @@ import FzIcon from 'images/Fz.png'
 import GitIcon from 'images/Git.png'
 import JqueryIcon from 'images/Jquery.png'
 
+const mouseX = ref(0);
+const mouseY = ref(0);
+
+
+onMounted(() => {
+    // watchEffect(() => {
+    //     const panels = document.querySelectorAll(".panel");
+
+    //     panels.forEach((panel) => {
+    //         const rect = panel.getBoundingClientRect();
+    //         const left = mouseX.value - rect.left;
+    //         const top = mouseY.value - rect.top;
+
+    //         panel.style.setProperty("--left", `${left}px`);
+    //         panel.style.setProperty("--top", `${top}px`);
+    //     });
+    // });
+
+    // document.addEventListener("mousemove", (e) => {
+    //     mouseX.value = e.pageX;
+    //     mouseY.value = e.pageY;
+    // });
+
+    $(".techStack-carousel").slick({
+        infinite: true,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 0,
+        pauseOnHover: false,
+        speed: 2000,
+        nextArrow: false,
+        prevArrow: false,
+        cssEase: "linear",
+    });
+
+    $(".project-carousel").slick({
+        infinite: true,
+        dots: false,
+        autoplay: true,
+        autoplaySpeed: 1500,
+        prevArrow: $(".prevBtn"),
+        nextArrow: $(".nextBtn"),
+    });
+});
 
 </script>
 
@@ -171,7 +217,7 @@ import JqueryIcon from 'images/Jquery.png'
             <div class="flex flex-row justify-between items-center mb-1">
                 <p class="panel-label text-label mb-0">08 blog</p>
                 <Link :href="route('blog')" class="newtabIcon">
-                    <newtabSmIcon />
+                <newtabSmIcon />
                 </Link>
             </div>
             <div class="blog-listing overflow-y-scroll blog-overflow pr-2">
