@@ -29,7 +29,12 @@ class DatabaseSeeder extends Seeder
             'facebook_link' => 'https://www.facebook.com/yourprofile',
             'linkedin_link' => 'https://www.linkedin.com/in/yourprofile',
             'instagram_link' => 'https://www.instagram.com/yourprofile',
-            // 'resume' => '/path/to/your/resume.pdf',
+            'discord_link' => 'https://www.instagram.com/yourprofile',
+            'github_link' => 'https://www.instagram.com/yourprofile',
+            // 'resume' => '/path resume.pdf',
         ]);
+
+        \App\Models\Post::factory(10)->create();
+        \App\Models\Project::factory(10)->create();
     }
 }

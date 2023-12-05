@@ -20,8 +20,10 @@ import FzIcon from 'images/Fz.png'
 import GitIcon from 'images/Git.png'
 import JqueryIcon from 'images/Jquery.png'
 
-const mouseX = ref(0);
-const mouseY = ref(0);
+defineProps({
+    posts: Array,
+    socials: Array,
+});
 
 
 onMounted(() => {
@@ -66,6 +68,11 @@ onMounted(() => {
     });
 });
 
+const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDate = new Date(dateString).toLocaleDateString('en-US', options);
+    return formattedDate;
+};
 </script>
 
 <template>
@@ -88,12 +95,16 @@ onMounted(() => {
                 </div>
                 <div class="header-cta flex flex-row items-center gap-2">
                     <buttonPrimary :buttonText="'resume'" />
+                    <Link :href="socials.github_link">
                     <button class="icon-button p-1.5 rounded-lg">
                         <githubIcon />
                     </button>
+                    </Link>
+                    <Link :href="socials.github_link">
                     <button class="icon-button p-1.5 rounded-lg">
                         <linkedinIcon />
                     </button>
+                    </Link>
                 </div>
             </div>
         </div>
@@ -116,17 +127,18 @@ onMounted(() => {
                 <p class="text-xs italic text-grey">Contact details</p>
                 <div class="flex flex-row gap-2 items-center">
                     <mailIcon />
-                    <a class="normal-link text-white" href="mailto:">mnamz101@gmail.com</a>
+                    <a class="normal-link text-white" href="mailto:mnamz101@gmail.com">mnamz101@gmail.com</a>
                 </div>
                 <div class="flex flex-row gap-2 items-center">
                     <phoneIcon />
-                    <a class="normal-link text-white" href="mailto:">0123456789</a>
+                    <Link class="normal-link text-white" target="_blank" href="https://wa.me/601151456165">601151456165
+                    </Link>
                 </div>
             </div>
             <div class="flex flex-col gap-.5">
                 <p class="text-xs italic text-grey">Socials</p>
                 <p>
-                    <a class="arrow-link text-white" href="#">Linkedin</a>
+                    <Link class="arrow-link text-white" :href="socials.linkedin_link">Linkedin</Link>
                 </p>
                 <p>
                     <a class="arrow-link text-white" href="#">Instagram</a>
@@ -136,9 +148,6 @@ onMounted(() => {
                 </p>
                 <p>
                     <a class="arrow-link text-white" href="#">Discord</a>
-                </p>
-                <p>
-                    <a class="arrow-link text-white" href="#">Jobstreet</a>
                 </p>
             </div>
         </div>
@@ -221,40 +230,17 @@ onMounted(() => {
                 </Link>
             </div>
             <div class="blog-listing overflow-y-scroll blog-overflow pr-2">
-                <div class="blog-item flex flex-col gap-1 pt-2">
+                <div v-for="post in posts" :key="post.id" class="blog-item flex flex-col gap-1 pt-2">
                     <p class="text-white">
-                        <a class="normal-link" href="#">Contoh-contoh Rizz 13 May digunakan dalam
-                            masyar...</a>
+                        <Link :href="route('post.single', { slug: post.slug })" class="normal-link">
+                        {{ post.title }}
+                        </Link>
                     </p>
                     <div class="flex flex-row justify-between items-center">
-                        <p class="text-xs text-grey">13 May 2020</p>
-                        <a href="#">
-                            <blogarrowIcon />
-                        </a>
-                    </div>
-                </div>
-                <div class="blog-item flex flex-col gap-1 pt-2">
-                    <p class="text-white">
-                        <a class="normal-link" href="#">Contoh-contoh Rizz 13 May digunakan dalam
-                            masyar...</a>
-                    </p>
-                    <div class="flex flex-row justify-between items-center">
-                        <p class="text-xs text-grey">13 May 2020</p>
-                        <a href="#">
-                            <blogarrowIcon />
-                        </a>
-                    </div>
-                </div>
-                <div class="blog-item flex flex-col gap-1 pt-2">
-                    <p class="text-white">
-                        <a class="normal-link" href="#">Contoh-contoh Rizz 13 May digunakan dalam
-                            masyar...</a>
-                    </p>
-                    <div class="flex flex-row justify-between items-center">
-                        <p class="text-xs text-grey">13 May 2020</p>
-                        <a href="#">
-                            <blogarrowIcon />
-                        </a>
+                        <p class="text-xs text-grey">{{ formatDate(post.created_at) }}</p>
+                        <Link :href="route('post.single', { slug: post.slug })">
+                        <blogarrowIcon />
+                        </Link>
                     </div>
                 </div>
             </div>

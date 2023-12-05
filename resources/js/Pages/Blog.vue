@@ -1,7 +1,31 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
-import Landing from "@/Components/Portfolio/Landing.vue";
-import BlogList from "@/Components/Portfolio/Blog-list.vue";
+import newtabSm from '@/Components/Portfolio/svg/newtab-sm.vue';
+import SocialPanel from '@/Components/Portfolio/SocialPanel.vue';
+
+
+const props = defineProps({
+    post: Array,
+    posts: Array,
+    socials: Array,
+});
+
+const truncate = (text, maxLength) => {
+  const words = text.split(' ');
+
+  if (words.length <= maxLength) {
+    return text;
+  }
+
+  const truncatedWords = words.slice(0, maxLength);
+  return `${truncatedWords.join(' ')} ...`;
+};
+
+const formatDate = (dateString) => {
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  const formattedDate = new Date(dateString).toLocaleDateString('en-US', options);
+  return formattedDate;
+};
 
 </script>
 
@@ -15,7 +39,52 @@ import BlogList from "@/Components/Portfolio/Blog-list.vue";
                 <Link :href="route('landing')" class="az-logo text-2xl font-bold">az.</Link>
             </div>
             <!-- Main content -->
-            <BlogList />
+            <div class="flex flex-col sm:flex-row gap-2.5">
+
+                <div class="w-full sm:w-2/4">
+                    <div class="flex items-center gap-2.5 mb-4">
+                        <div class="panel text-label m-0">01 Blog listing</div>
+                        <p class="text-white text-xs">I be saying stuff lately...</p>
+                    </div>
+                    <div class="flex flex-col gap-2 5">
+                        <!-- Blog-items -->
+                        <div v-for="post in props.posts" class="blog-item panel flex flex-col gap-2 w-full">
+                            <div class="flex justify-between items-center">
+                                <p class="text-grey text-xs">{{  formatDate(post.created_at)  }}</p>
+                                <Link class="newtabIcon" :href="route('post.single', { slug: post.slug })" >
+                                    <newtabSm />
+                                </Link>
+                            </div>
+                            <p class="text-base font-medium text-white">{{  post.title  }}</p>
+                            <p class="text-grey text-xs">{{  truncate(post.content, 5)  }}</p>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="w-full sm:w-2/4 sm:relative">
+                    <div class="sm:sticky sm:top-2.5">
+                        <SocialPanel :socials="props.socials" />
+
+                        <div class="add-info panel flex flex-col sm:float-right">
+                            <div class="text-label">02 Additional information</div>
+                            <div class="flex flex-col gap-4">
+                                <p class="text-base text-white font-light">What I used for updating all this content?</p>
+                                <div class="flex flex-col gap-0">
+                                    <p class="text-xs italic text-grey">CMS</p>
+                                    <p><a class="normal-link text-red font-normal" href="#">BlockBlog</a></p>
+                                    <p><a class="normal-link text-red" href="#">Laravel</a></p>
+                                </div>
+                                <div class="flex flex-col gap-0">
+                                    <p class="text-xs italic text-grey">Frontend</p>
+                                    <p><a class="normal-link text-red font-normal" href="#">Tailwind CSS</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 </template>

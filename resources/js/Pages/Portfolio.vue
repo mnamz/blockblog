@@ -1,15 +1,16 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
 import Landing from "@/Components/Portfolio/Landing.vue";
-import BlogList from "@/Components/Portfolio/Blog-list.vue";
-import SingleBlog from "./Blog/Single.vue";
+import { onMounted } from "vue";
 
-defineProps({
-    canLogin: Boolean,
-    canRegister: Boolean,
-    laravelVersion: String,
-    phpVersion: String,
+const props = defineProps({
+    posts: Array,
+    socials: Array,
 });
+
+onMounted(() => {
+    console.log(props.posts)
+})
 </script>
 
 <template>
@@ -22,8 +23,7 @@ defineProps({
                 <Link :href="route('landing')" class="az-logo text-2xl font-bold">az.</Link>
             </div>
             <!-- Main content -->
-            <Landing :canLogin="canLogin" :canRegister="canRegister" :laravelVersion="laravelVersion"
-                :phpVersion="phpVersion" />
+            <Landing :socials="props.socials" :posts="props.posts" />
         </div>
     </div>
 </template>

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\LandingController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
@@ -19,24 +21,18 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Portfolio', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-        'posts' => Post::all(),
-    ]);
-})->name('landing');
+Route::get('/', [LandingController::class, 'index'])->name('landing');
+Route::get('/posts/{slug}', [BlogController::class, 'show'])->name('post.single');
+Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 
-Route::get('/blog', function () {
-    return Inertia::render('Blog', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-})->name('blog');
+// Route::get('/blog', function () {
+//     return Inertia::render('Blog', [
+//         'canLogin' => Route::has('login'),
+//         'canRegister' => Route::has('register'),
+//         'laravelVersion' => Application::VERSION,
+//         'phpVersion' => PHP_VERSION,
+//     ]);
+// })->name('blog');
 
 // Route::get('/blog', [PostController::class, 'listing'])->name('blog');
 // Route::get('/blog/1', [PostController::class, 'show'])->name('blog.show');

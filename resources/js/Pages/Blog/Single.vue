@@ -1,7 +1,7 @@
 <script setup>
 import { Link } from "@inertiajs/vue3";
 import { blogarrowIcon } from '@/Components/Portfolio';
-import SocialPanel from '@/Components/Portfolio/Social-panel.vue';
+import SocialPanel from '@/Components/Portfolio/SocialPanel.vue';
 import newtabSmIcon from '@/Components/Portfolio/svg/newtab-sm.vue';
 import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
@@ -11,7 +11,18 @@ import Flutter from 'images/Flutter.png'
 import FzIcon from 'images/Fz.png'
 import GitIcon from 'images/Git.png'
 import JqueryIcon from 'images/Jquery.png'
+import { onMounted } from "vue";
 
+
+const props = defineProps({
+    post: Array,
+    posts: Array,
+    socials: Array,
+});
+
+onMounted(() => {
+    console.log(props.post)
+})
 </script>
 
 <template>
@@ -29,48 +40,13 @@ import JqueryIcon from 'images/Jquery.png'
                     <div class="panel flex flex-col gap-3">
                         <p class="panel-label text-label mb-0">Daiy dose of Bs</p>
                         <p class="text-xl text-white font-normal">
-                            Contoh-contoh Rizz 13 May digunakan dalam masyarakat kini
+                            {{ props.post.title }}
                         </p>
                         <p class="text-white font-light text-sm">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,molestiae quas vel sint
-                            commodi
-                            repudiandae consequuntur voluptatum laborumnumquam blanditiis harum quisquam eius sed odit
-                            fugiat iusto
-                            fuga praesentiumoptio, eaque rerum! Provident similique accusantium nemo autem.
-                            Veritatis obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquamnihil,
-                            eveniet
-                            aliquid culpa officia aut! Impedit sit sunt quaerat, odit,tenetur error, harum nesciunt ipsum
-                            debitis
-                            quas aliquid. Reprehenderit,quia. Quo neque error repudiandae fuga? Ipsa laudantium molestias
-                            eos
-                            sapiente officiis modi at sunt excepturi expedita sint?
-                            Sed quibusdam recusandae alias error harum maxime adipisci amet laborum. Perspiciatis nesciunt
-                            dolorem!
-                            Officiis iure rerum voluptates a cumque velit quibusdam sed amet tempora. Sit laborum ab, eius
-                            fugit
-                            doloribus tenetur fugiat, temporibus enim commodi iusto libero magni deleniti quod quam
-                            consequuntur!
-                            Commodi minima excepturi repudiandae velit hic maximedoloremque. Quaerat provident commodi
-                            consectetur
-                            veniam similique ad earum omnis ipsum saepe, voluptas, hic voluptates pariatur est explicabo
-                            fugiat,
-                            dolorum eligendi quam cupiditate excepturi mollitia maiores labore suscipit quas?
+                            {{ props.post.content }}
                         </p>
                     </div>
                 </div>
-
-                <Carousel :items-to-show="3" :autoplay="true" :pause-autoplay-on-hover="true">
-                    <Slide v-for="(image, index) in imageArray" :key="index">
-                        <div class="px-2">
-                            <img :src="image" alt="" />
-                        </div>
-                    </Slide>
-
-                    <template #addons>
-                        <Navigation />
-                        <Pagination />
-                    </template>
-                </Carousel>
 
                 <div class="w-full sm:w-1/4 sm:relative">
                     <div class="sm:sticky sm:top-2.5 flex flex-col justify-start items-start gap-2.5">
@@ -83,58 +59,23 @@ import JqueryIcon from 'images/Jquery.png'
                             </div>
 
                             <div class="otherBlog-listing blog-overflow overflow-y-scroll pr-2">
-                                <div class="blog-item flex flex-col gap-1 pt-2">
+                                <div v-for="post in props.posts" class="blog-item flex flex-col gap-1 pt-2">
                                     <p class="text-white">
-                                        <a class="normal-link" href="#">Contoh-contoh Rizz 13 May digunakan dalam
-                                            masyar...</a>
+                                        <Link :href="route('post.single', { slug: post.slug })" class="normal-link">
+                                        {{ post.title }}
+                                        </Link>
                                     </p>
                                     <div class="flex flex-row justify-between items-center">
-                                        <p class="text-xs text-grey">13 May 2020</p>
-                                        <a href="#">
-                                            <blogarrowIcon />
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="blog-item flex flex-col gap-1 pt-2">
-                                    <p class="text-white">
-                                        <a class="normal-link" href="#">Contoh-contoh Rizz 13 May digunakan dalam
-                                            masyar...</a>
-                                    </p>
-                                    <div class="flex flex-row justify-between items-center">
-                                        <p class="text-xs text-grey">13 May 2020</p>
-                                        <a href="#">
-                                            <blogarrowIcon />
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="blog-item flex flex-col gap-1 pt-2">
-                                    <p class="text-white">
-                                        <a class="normal-link" href="#">Contoh-contoh Rizz 13 May digunakan dalam
-                                            masyar...</a>
-                                    </p>
-                                    <div class="flex flex-row justify-between items-center">
-                                        <p class="text-xs text-grey">13 May 2020</p>
-                                        <a href="#">
-                                            <blogarrowIcon />
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="blog-item flex flex-col gap-1 pt-2">
-                                    <p class="text-white">
-                                        <a class="normal-link" href="#">Contoh-contoh Rizz 13 May digunakan dalam
-                                            masyar...</a>
-                                    </p>
-                                    <div class="flex flex-row justify-between items-center">
-                                        <p class="text-xs text-grey">13 May 2020</p>
-                                        <a href="#">
-                                            <blogarrowIcon />
-                                        </a>
+                                        <p class="text-xs text-grey">{{ post.created_at }}</p>
+                                        <Link :href="route('post.single', { slug: post.slug })">
+                                        <blogarrowIcon />
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="sm:sticky sm:top-2.5">
-                            <SocialPanel />
+                            <SocialPanel :socials="props.socials" />
                         </div>
                     </div>
                 </div>

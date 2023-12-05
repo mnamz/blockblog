@@ -21,6 +21,8 @@ const form = useForm({
     facebook_link: props.profile.facebook_link,
     linkedin_link: props.profile.linkedin_link,
     instagram_link: props.profile.instagram_link,
+    github_link: props.profile.github_link,
+    discord_link: props.profile.discord_link,
     photo: props.profile.photo ? props.profile.photo : null,
 });
 
@@ -103,6 +105,22 @@ const apiKey = import.meta.env.VITE_TINYMCE_API;
                 <TextInput id="instagram_link" v-model="form.instagram_link" type="text" class="mt-1 block w-full"
                     autocomplete="instagram_link" />
                 <InputError :message="form.errors.instagram_link" class="mt-2" />
+            </div>
+
+            <!-- Github Link -->
+            <div class="col-span-6 sm:col-span-4">
+                <InputLabel for="github_link" value="Github Link" />
+                <TextInput id="github_link" v-model="form.github_link" type="text" class="mt-1 block w-full"
+                    autocomplete="github_link" />
+                <InputError :message="form.errors.github_link" class="mt-2" />
+            </div>
+
+            <!-- Discord Link -->
+            <div class="col-span-6 sm:col-span-4">
+                <InputLabel for="discord_link" value="Discord Link" />
+                <TextInput id="discord_link" v-model="form.discord_link" type="text" class="mt-1 block w-full"
+                    autocomplete="discord_link" />
+                <InputError :message="form.errors.discord_link" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">

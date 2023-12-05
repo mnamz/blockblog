@@ -1,6 +1,10 @@
 <script setup>
 import newtabSm from './svg/newtab-sm.vue';
-import SocialPanel from './Social-panel.vue';
+import SocialPanel from './SocialPanel.vue';
+
+defineProps({
+    socials: Array,
+});
 </script>
 
 <template>
@@ -29,7 +33,7 @@ import SocialPanel from './Social-panel.vue';
         </div>
         <div class="w-full sm:w-2/4 sm:relative">
             <div class="sm:sticky sm:top-2.5">
-                <SocialPanel />
+                <SocialPanel :socials="socials"/>
 
                 <div class="add-info panel flex flex-col sm:float-right">
                     <div class="text-label">02 Additional information</div>

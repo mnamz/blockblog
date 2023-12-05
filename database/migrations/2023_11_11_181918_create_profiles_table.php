@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('facebook_link')->nullable();
             $table->string('linkedin_link')->nullable();
             $table->string('instagram_link')->nullable();
+            $table->string('discord_link')->nullable();
+            $table->string('github_link')->nullable();
             $table->string('resume')->nullable();
             $table->string('photo')->nullable();
             $table->timestamps();

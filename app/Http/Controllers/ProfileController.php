@@ -91,6 +91,8 @@ class ProfileController extends Controller
         $profile->facebook_link = $request->facebook_link;
         $profile->linkedin_link = $request->linkedin_link;
         $profile->instagram_link = $request->instagram_link;
+        $profile->discord_link = $request->discord_link;
+        $profile->github_link = $request->github_link;
         // if ($request->hasFile('photo')) {
         //     Storage::delete($profile->photo);
         //     $profile->photo = $request->file('photo')->store('profile-photos', 'public');
