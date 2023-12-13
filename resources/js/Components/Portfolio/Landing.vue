@@ -14,14 +14,22 @@ import nextarrowIcon from "../Portfolio/svg/nextArrow.vue";
 import memojiAlep from 'images/memojiAlep.png'
 import Tintedprojectimage from 'images/Tintedprojectimage.png'
 import Cloud from 'images/Cloud.png'
-import Drupal from 'images/Drupal.png'
-import Flutter from 'images/Flutter.png'
-import FzIcon from 'images/Fz.png'
-import GitIcon from 'images/Git.png'
-import JqueryIcon from 'images/Jquery.png'
+import Drupal from 'images/drupal.svg'
+import GitIcon from 'images/git.svg'
+import JqueryIcon from 'images/jquery.svg'
+import LaravelIcon from 'images/laravel.png'
+import vueIcon from 'images/vuejs.svg'
+import phpIcon from 'images/php.svg'
+import javscriptIcon from 'images/javascript.svg'
+import bootstrapIcon from 'images/bootstrap.svg'
+import drupalIcon from 'images/drupal.svg'
+import nginxIcon from 'images/nginx-original.svg'
+import mysqlIcon from 'images/mysql.svg'
+import wordpressIcon from 'images/wordpress.svg'
 
 defineProps({
     posts: Array,
+    projects: Array,
     socials: Array,
 });
 
@@ -73,6 +81,10 @@ const formatDate = (dateString) => {
     const formattedDate = new Date(dateString).toLocaleDateString('en-US', options);
     return formattedDate;
 };
+
+const asset = (path) => {
+    return `/storage/${path}`;
+}
 </script>
 
 <template>
@@ -87,20 +99,19 @@ const formatDate = (dateString) => {
                 <div>
                     <p class="panel-label text-label">01 welcome</p>
                     <p class="text-2xl text-white">
-                        Hi! I'm Aliif Zin, a software developer based in
-                        Selangor, Malaysia. Dedicated to crafting
-                        robust, user-centric applications that ace the A
-                        to Z requirements.
+                        <span v-html="socials.details"></span>
                     </p>
                 </div>
                 <div class="header-cta flex flex-row items-center gap-2">
+                    <a href="storage/resume.pdf">
                     <buttonPrimary :buttonText="'resume'" />
+                    </a>
                     <Link :href="socials.github_link">
                     <button class="icon-button p-1.5 rounded-lg">
                         <githubIcon />
                     </button>
                     </Link>
-                    <Link :href="socials.github_link">
+                    <Link :href="socials.linkedin_link">
                     <button class="icon-button p-1.5 rounded-lg">
                         <linkedinIcon />
                     </button>
@@ -141,13 +152,10 @@ const formatDate = (dateString) => {
                     <Link class="arrow-link text-white" :href="socials.linkedin_link">Linkedin</Link>
                 </p>
                 <p>
-                    <a class="arrow-link text-white" href="#">Instagram</a>
+                    <Link class="arrow-link text-white" :href="socials.instagram_link">Instagram</Link>
                 </p>
                 <p>
-                    <a class="arrow-link text-white" href="#">Twitter</a>
-                </p>
-                <p>
-                    <a class="arrow-link text-white" href="#">Discord</a>
+                    <Link class="arrow-link text-white" :href="socials.discord_link">Discord</Link>
                 </p>
             </div>
         </div>
@@ -166,28 +174,22 @@ const formatDate = (dateString) => {
                 </button>
             </div>
             <div class="project-carousel overflow-hidden rounded-lg">
-                <div class="item relative">
-                    <img :src="Tintedprojectimage" alt="">
-                    <div class="item-title absolute z-10 flex flex-row gap-3 items-center">
-                        <p class="text-white text-2xl font-bold">Moad</p>
-                        <a href="">
-                            <newtablgIcon />
-                        </a>
+                <!-- <div v-if="projects.length > 0"> -->
+                    <div v-if="projects.length > 0" v-for="project in projects" :key="project.id" class="item relative">
+
+                        <img :src="asset(project.image)" class="object-fill min-h-[308px]" alt="">
+                        <div class="item-title absolute z-10 flex flex-row gap-3 items-center">
+                            <p class="text-white text-2xl font-bold">{{ project.name }}</p>
+                            <Link :href="route('project.single', { slug: project.slug })">
+                                <newtablgIcon />
+                            </Link>
+                        </div>
                     </div>
-                </div>
-                <div class="item relative">
+                <!-- </div> -->
+                <div v-else class="item relative">
                     <img :src="Tintedprojectimage" alt="">
                     <div class="item-title absolute z-10 flex flex-row gap-3 items-center">
                         <p class="text-white text-2xl font-bold">Moad2</p>
-                        <a href="">
-                            <newtablgIcon />
-                        </a>
-                    </div>
-                </div>
-                <div class="item relative">
-                    <img :src="Tintedprojectimage" alt="">
-                    <div class="item-title absolute z-10 flex flex-row gap-3 items-center">
-                        <p class="text-white text-2xl font-bold">Moad3</p>
                         <a href="">
                             <newtablgIcon />
                         </a>
@@ -201,22 +203,37 @@ const formatDate = (dateString) => {
             <p class="panel-label text-label p-2.5">07 tech stack</p>
             <div class="techStack-carousel pb-2.5 sm:py-3">
                 <div class="px-2">
-                    <img :src="Cloud" alt="" />
+                    <img :src="phpIcon" alt="" />
                 </div>
                 <div class="px-2">
                     <img :src="Drupal" alt="" />
                 </div>
                 <div class="px-2">
-                    <img :src="Flutter" alt="" />
-                </div>
-                <div class="px-2">
                     <img :src="GitIcon" alt="" />
                 </div>
                 <div class="px-2">
-                    <img :src="FzIcon" alt="" />
+                    <img :src="JqueryIcon" alt="" />
                 </div>
                 <div class="px-2">
-                    <img :src="JqueryIcon" alt="" />
+                    <img :src="vueIcon" alt="" />
+                </div>
+                <div class="px-2">
+                    <img :src="LaravelIcon" alt="" />
+                </div>
+                <div class="px-2">
+                    <img :src="javscriptIcon" alt="" />
+                </div>
+                <div class="px-2">
+                    <img :src="bootstrapIcon" alt="" />
+                </div>
+                <div class="px-2">
+                    <img :src="nginxIcon" alt="" />
+                </div>
+                <div class="px-2">
+                    <img :src="mysqlIcon" alt="" />
+                </div>
+                <div class="px-2">
+                    <img :src="wordpressIcon" alt="" />
                 </div>
             </div>
         </div>

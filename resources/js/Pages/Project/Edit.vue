@@ -17,7 +17,16 @@ const form = useForm({
     slug: props.project.slug,
     description: props.project.description,
     content: props.project.content,
+    image: null,
 });
+
+const handleImageChange = (event) => {
+    form.image = event.target.files[0];
+};
+
+const asset = (path) => {
+    return `/storage/${path}`;
+}
 
 
 const submit = () => {
@@ -26,10 +35,10 @@ const submit = () => {
 </script>
 
 <template>
-    <AppLayout title="Posts">
+    <AppLayout title="Projects">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Edit Posts
+                Edit Projects
             </h2>
         </template>
 
@@ -43,7 +52,7 @@ const submit = () => {
                                 <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                                     <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                                         <div class="bg-white">
-                                            <form @submit.prevent="submit">
+                                            <form @submit.prevent="submit" enctype="multipart/form-data">
                                                 <div class="mb-6">
                                                     <label for="Name"
                                                         class="block mb-2 text-sm font-medium text-black-900 dark:text-black-300">Name</label>
@@ -75,6 +84,20 @@ const submit = () => {
                                                     </div>
                                                 </div>
                                                 <div class="mb-6">
+                                                    <label for="image"
+                                                        class="block mb-2 text-sm font-medium text-black-900 dark:text-black-300">Image</label>
+                                                    <input type="file" @change="handleImageChange" name="image"
+                                                        accept="image/*"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+                                                    <div v-if="form.errors.image" class="text-sm text-red-600">
+                                                        {{ form.errors.image }}
+                                                    </div>
+                                                    <div v-if="props.project.image">
+                                                        <img :src="asset(props.project.image)" alt="Image Preview"
+                                                            class="mt-2 max-w-full h-auto" />
+                                                    </div>
+                                                </div>
+                                                <div class="mb-6">
                                                     <label for="slug"
                                                         class="block mb-2 text-sm font-medium text-black-900 dark:text-black-300">Content</label>
                                                     <div>
@@ -82,7 +105,6 @@ const submit = () => {
                                                             api-key="7fim64n9teu9l1pfpnh5cnxlsphcs7j49fsdq21dzbgfttq9"
                                                             :init='{
                                                                 "toolbar_mode": "sliding",
-                                                                "plugins": "ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss",
                                                                 "toolbar": "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
                                                                 "tinycomments_mode": "embedded",
                                                                 "tinycomments_author": "Author name",
@@ -112,5 +134,4 @@ const submit = () => {
                 </div>
             </div>
         </div>
-    </AppLayout>
-</template>
+    </AppLayout></template>

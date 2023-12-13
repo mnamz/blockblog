@@ -11,11 +11,16 @@ const props = defineProps({
     },
 });
 
+const handleImageChange = (event) => {
+    form.image = event.target.files[0];
+};
+
 const form = useForm({
     name: '',
     slug: '',
     description: '',
     content: '',
+    image: null
 });
 
 const submit = () => {
@@ -41,7 +46,7 @@ const submit = () => {
                                 <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                                     <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                                         <div class="bg-white">
-                                            <form @submit.prevent="submit">
+                                            <form @submit.prevent="submit" enctype="multipart/form-data">
                                                 <div class="mb-6">
                                                     <label for="Name"
                                                         class="block mb-2 text-sm font-medium text-black-900 dark:text-black-300">Name</label>
@@ -73,6 +78,16 @@ const submit = () => {
                                                     </div>
                                                 </div>
                                                 <div class="mb-6">
+                                                    <label for="image"
+                                                        class="block mb-2 text-sm font-medium text-black-900 dark:text-black-300">Image</label>
+                                                    <input type="file" @change="handleImageChange" name="image"
+                                                        accept="image/*"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+                                                    <div v-if="form.errors.image" class="text-sm text-red-600">
+                                                        {{ form.errors.image }}
+                                                    </div>
+                                                </div>
+                                                <div class="mb-6">
                                                     <label for="slug"
                                                         class="block mb-2 text-sm font-medium text-black-900 dark:text-black-300">Content</label>
                                                     <div>
@@ -80,7 +95,6 @@ const submit = () => {
                                                             api-key="7fim64n9teu9l1pfpnh5cnxlsphcs7j49fsdq21dzbgfttq9"
                                                             :init='{
                                                                 "toolbar_mode": "sliding",
-                                                                "plugins": "ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss",
                                                                 "toolbar": "undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat",
                                                                 "tinycomments_mode": "embedded",
                                                                 "tinycomments_author": "Author name",

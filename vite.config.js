@@ -1,4 +1,6 @@
-import { defineConfig } from 'vite';
+import {
+    defineConfig
+} from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
 
@@ -20,7 +22,8 @@ export default defineConfig({
     ],
     resolve: {
         alias: {
-          'images': '/storage/images',
+            'images': '/storage/images',
+            'project': '/storage/app/project_images',
         },
-      },
+    },
 });

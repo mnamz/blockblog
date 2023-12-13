@@ -15,18 +15,21 @@ import { onMounted } from "vue";
 
 
 const props = defineProps({
-    post: Array,
-    posts: Array,
+    project: Array,
+    projects: Array,
     socials: Array,
 });
 
-onMounted(() => {
-    console.log(props.post)
-})
+const formatDate = (dateString) => {
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  const formattedDate = new Date(dateString).toLocaleDateString('en-US', options);
+  return formattedDate;
+};
+
 </script>
 
 <template>
-    <Head title="Blog" />
+    <Head :title="props.project.name" />
     <div
         class="relative sm:flex flex-col sm:justify-start sm:items-center min-h-screen bg-center selection:bg-red-500 selection:text-white">
         <div class="custom-container w-full px-3 lg:px-0">
@@ -38,12 +41,12 @@ onMounted(() => {
 
                 <div class="w-full sm:w-3/4">
                     <div class="panel flex flex-col gap-3">
-                        <p class="panel-label text-label mb-0">Daiy dose of Bs</p>
+                        <p class="panel-label text-label mb-0">Project summary</p>
                         <p class="text-xl text-white font-normal">
-                            {{ props.post.title }}
+                            {{ props.project.name }}
                         </p>
                         <p class="text-white font-light text-sm">
-                            {{ props.post.content }}
+                            <span v-html="props.project.content"></span>
                         </p>
                     </div>
                 </div>
@@ -52,22 +55,22 @@ onMounted(() => {
                     <div class="sm:sticky sm:top-2.5 flex flex-col justify-start items-start gap-2.5">
                         <div class="panel flex flex-col gap-2 w-full">
                             <div class="flex justify-between items-center">
-                                <p class="panel-label text-label mb-0">Other blog</p>
-                                <Link :href="route('blog')" class="newtabIcon">
+                                <p class="panel-label text-label mb-0">Other projects</p>
+                                <Link :href="route('portfolio')" class="newtabIcon">
                                 <newtabSmIcon />
                                 </Link>
                             </div>
 
                             <div class="otherBlog-listing blog-overflow overflow-y-scroll pr-2">
-                                <div v-for="post in props.posts" class="blog-item flex flex-col gap-1 pt-2">
+                                <div v-for="project in props.projects" class="blog-item flex flex-col gap-1 pt-2">
                                     <p class="text-white">
-                                        <Link :href="route('post.single', { slug: post.slug })" class="normal-link">
-                                        {{ post.title }}
+                                        <Link :href="route('project.single', { slug: project.slug })" class="normal-link">
+                                        {{ project.name }}
                                         </Link>
                                     </p>
                                     <div class="flex flex-row justify-between items-center">
-                                        <p class="text-xs text-grey">{{ post.created_at }}</p>
-                                        <Link :href="route('post.single', { slug: post.slug })">
+                                        <p class="text-xs text-grey">{{ formatDate(project.created_at) }}</p>
+                                        <Link :href="route('project.single', { slug: project.slug })">
                                         <blogarrowIcon />
                                         </Link>
                                     </div>

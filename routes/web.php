@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
@@ -23,7 +24,11 @@ use Inertia\Inertia;
 
 Route::get('/', [LandingController::class, 'index'])->name('landing');
 Route::get('/posts/{slug}', [BlogController::class, 'show'])->name('post.single');
+Route::get('/project', [PortfolioController::class, 'index'])->name('portfolio');
+Route::get('/project/{slug}', [PortfolioController::class, 'show'])->name('project.single');
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
+
+
 
 // Route::get('/blog', function () {
 //     return Inertia::render('Blog', [

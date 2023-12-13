@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+use Image;
 
 class ProjectController extends Controller
 {
@@ -40,17 +42,34 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'name' => 'required|string|max:255',
             'slug' => 'required|string|max:255',
             'description' => 'string',
             'content' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('public/project_images');
+            $imagePath = str_replace('public/', '', $imagePath);
+
+            $img = Image::make(storage_path("app/public/{$imagePath}"));
+            $img->resize(null, 308, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            $img->save();
+        } else {
+            $imagePath = null;
+        }
+
         Project::create([
             'name' => $request->name,
             'slug' => Str::slug($request->slug),
             'description' => $request->description,
             'content' => $request->content,
+            'image' => $imagePath,
             'user_id' => Auth::user()->id,
         ]);
         sleep(1);
@@ -84,22 +103,37 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
+        // dd($request->all());
         $request->validate([
             'name' => 'required|string|max:255',
             'slug' => 'required|string|max:255',
             'description' => 'string',
             'content' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        if ($request->hasFile('image')) {
+            Storage::delete($project->image);
+            $imagePath = $request->file('image')->store('public/project_images');
+        } else {
+            $imagePath = $project->image;
+        }
+
 
         $project->name = $request->name;
         $project->slug = Str::slug($request->slug);
         $project->description = $request->description;
         $project->content = $request->content;
+
+
+        $project->update([
+            'image' => $imagePath,
+        ]);
+
         $project->save();
         sleep(1);
 
         return redirect()->route('projects.index')->with('message', 'Project updated successfully');
-
     }
 
 
